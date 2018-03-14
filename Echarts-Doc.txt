@@ -1,0 +1,208 @@
+---------- Ecahrts 组成结构----------
+接口
+-- Echarts  图形库
+
+图表类型
+-- Bar      柱状图
+-- Line     折线图
+-- Scatter  散点图
+-- K        K 线图
+-- Pie      饼图
+-- Radar    雷达图
+-- Chord    和弦图
+-- Force    力导布局图
+-- Map      地图
+-- Gauge    仪表盘
+-- Funnel   漏斗图
+-- Lsland   孤岛
+
+组件
+-- Axis     坐标轴
+-- Grid     网格
+-- Polar    极坐标
+-- Title    标题
+-- Tooltip  提示
+-- Legend   图例
+-- DataZoom 数据区域缩放
+-- DataRange 极值漫游
+-- Toolbox  工具箱
+-- Timeline 时间轴
+
+基础库
+-- Zrender  Canvas 类库
+
+
+---------- Echarts 名词解释 ----------
+基本名词
+chart	是指一个完整的图表，如折线图，饼图等“基本”图表类型或由基本图表组合而成的“混搭”图表，可能包括坐标轴、图例等
+axis	直角坐标系中的一个坐标轴，坐标轴可分为类目型、数值型或时间型
+xAxis	直角坐标系中的横轴，通常并默认为类目型
+yAxis	直角坐标系中的纵轴，通常并默认为数值型
+grid	直角坐标系中除坐标轴外的绘图网格，用于定义直角系整体布局
+legend	图例，表述数据和图形的关联
+dataRange	值域选择，常用于展现地域数据时选择值域范围
+dataZoom	数据区域缩放，常用于展现大量数据时选择可视范围
+roamController	缩放漫游组件，搭配地图使用
+toolbox	辅助工具箱，辅助功能，如添加标线，框选缩放等
+tooltip	气泡提示框，常用于展现更详细的数据
+timeline	时间轴，常用于展现同一系列数据在时间维度上的多份数据
+series	数据系列，一个图表可能包含多个系列，每一个系列可能包含多个数据
+
+图表名词
+line	折线图，堆积折线图，区域图，堆积区域图
+bar     柱形图（纵向），堆积柱形图，条形图（横向），堆积条形图
+scatter	散点图，气泡图。散点图至少需要横纵两个数据，更高维度数据加入时可以映射为颜色或大小，当映射到大小时则为气泡图
+k       K线图，蜡烛图。常用于展现股票交易数据
+pie     饼图，圆环图。饼图支持两种（半径、面积）南丁格尔玫瑰图模式
+radar	雷达图，填充雷达图。高维度数据展现的常用图表
+chord	和弦图。常用于展现关系数据，外层为圆环图，可体现数据占比关系，内层为各个扇形间相互连接的弦，可体现关系数据
+force	力导布局图。常用于展现复杂关系网络聚类布局
+map     地图。内置世界地图、中国及中国34个省市自治区地图数据、可通过标准GeoJson扩展地图类型。支持svg扩展类地图应用，如室内地图、运动场、物件构造等
+heatmap	热力图。用于展现密度分布信息，支持与地图、百度地图插件联合使用
+gauge	仪表盘。用于展现关键指标数据，常见于BI类系统
+funnel	漏斗图。用于展现数据经过筛选、过滤等流程处理后发生的数据变化，常见于BI类系统
+evnetRiver	事件河流图。常用于展示具有时间属性的多个事件，以及事件随时间的演化
+treemap	矩形式树状结构图，简称：矩形树图。用于展示树形数据结构，优势是能最大限度展示节点的尺寸特征
+venn	韦恩图。用于展示集合以及它们的交集
+tree	树图。用于展示树形数据结构各节点的层级关系
+wordCloud	词云。词云是关键词的视觉化描述，用于汇总用户生成的标签或一个网站的文字内容
+
+---------- Echarts API ----------
+Echart.Object
+--setOption 配置图表实例任何可配置选项,
+    --option  多次调用时，选项默认merge，无选项时，插入选项，若已有则更新
+        --backgroundColor: 背景颜色，支持rgba，默认无，透明
+        --color: 数据系列的颜色列表，当系列个数大于颜色个数时，列表循环选取
+        --animation: 是否开启动画，默认为开启
+        --timeline: 时间轴，Once。
+            --show: 是否显示 {boolean: true}
+            --zlevel: 一级层叠控制 {nubmer: 0}
+            --z: 二级层叠控制 {number: 0}
+            --type: 模式为时间类型 {string: 'time'/ 'number'}
+            --notMerge: 是否合并 {boolean: false}
+            --realtime: 实时显示更改 {boolean: true}
+            --x: 左上角横坐标 {number: 0}
+            --y: 左上角纵坐标 {number: 0}
+            --x2: 右下角横坐标 {number: 0}
+            --y2: 右下角纵坐标 {number: 0}
+            --width: 时间轴宽度 {number: 自适应}
+            --height: 时间轴高度 {number: 50}
+            --backgroundColor: 时间轴背景颜色 {color: 'rgba(0,0,0,0)'}
+            --borderWidth: 边框线宽 {number|Array: 0}
+            --borderColor: 边框颜色 {color: '#ccc'}
+            --padding: 内边距 {number|Array: 5}
+            --controlPosition: 播放控制器位置 {string: 'left'|'right'|'none'}
+            --autoPlay: 是否自动播放 {boolean: false}
+            --loop: 是否循环播放 {boolean: true}
+            --playinterval: 播放时间间隔 {number: 2000}
+            --lineStyle: 时间轴样式 {Object|lineStyle}
+                {
+                    color: '#666',  //时间轴线颜色
+                    width: 1,       //时间轴线宽度
+                    type: 'dashed', //时间轴线类型
+                }
+            --label: 时间轴标签文本 {Object}
+                {
+                    show: true,     //是否显示
+                    interval: 'auto',   //挑选间隔
+                    rotate: 0,      //旋转角度
+                    formatter: null,    //间隔名称格式器
+                    textStyle: {
+                        color: '#333',  //文字样式
+                    }
+                }
+            --checkpointStyle: 时间轴当前点
+                {
+                    symbol: 'auto',     //当前点symbol
+                    symbolSize: 'auto', //当前点symbol大小
+                    color: 'auto',      //当前点symbol颜色
+                    borderColor: 'auto',    //当前点symbol边线颜色
+                    borderWidth: 'auto',    //当前点symbol边线宽度
+                    label: {
+                        show: false,
+                        textStyle: {
+                            color: 'auto',
+                        }
+                    }
+                }
+            --controlStyle: 时间轴控制器样式
+                {
+                    itemSize: 15,   //按钮大小
+                    itemGap: 5,     //按钮间隔
+                    normal: {       //正常
+                        color: '#333',
+                    }
+                    emphasis: {     //hover
+                        color: '#1e90ff',
+                    }
+                }
+            --symbol: 轴点symbol
+            --symbolSize: 轴点symbol大小
+            --currentIndex: 当前索引位置
+            --data: 时间轴列表  {Array: []}
+        --title: 标题
+            --show: 是否显示 {boolean: true}
+            --zlevel: 一级层叠控制 {nubmer: 0}
+            --z: 二级层叠控制 {number: 0}
+            --text: 主标题文本 {string: ''}
+            --link: 主标题链接 {string: url}
+            --target: 主标题链接打开方式
+            --subtext: 副标题文本 {string: ''}
+            --sublink: 副标题链接 {string: url}
+            --subtarget: 副标题链接打开方式
+            --x: 水平位置 {string|number: 'center'|'left'|'right'| 0}
+            --y: 垂直位置 {string|number: 'center'|'top'|'bottom'| 0}
+            --textAlign: 水平对齐方式 {string: 'left'|'right'|'center'}
+            --backgroundColor: 标题背景颜色 {color: 'rgba(0,0,0,0)'}
+            --borderColor: 标题边框颜色 {string: '#ccc'}
+            --borderWidth: 标题边框宽度 {number: 0}
+            --padding: 标题内边距 {number|Array: 5}
+            --itemGap: 主标题纵向间隔 {number: 10}
+            --textStyle: 主标题文本样式
+                {
+                    fontSize: 18,   //字体大小 
+                    fontWeight: 'bolder',   //字体宽度
+                    color: '#ccc',  //字体颜色
+                }
+            --subtextStyle
+                {
+                    color: '#ccc'   //副标题字体颜色
+                }
+        --toolbox: 工具箱，Once。
+        --tooltip: 提示框
+        --legend: 图例，Once。
+        --dataRange: 值域
+        --dataZoom: 数据区域缩放
+        --roamController: 漫游缩放组件
+        --grid: 绘图网格
+        --xAxis: 横轴，Twoce。
+        --yAxis: 纵轴，Twoce。
+        
+
+--getOption 获取当前生效的所有Option
+
+--setSeries 数据接口，驱动图表生成的数据内容
+    ---Object.setSeries -> Object.setOption({ series })
+
+--getSeries获取当前生效的series
+    ---Object.getOption().series
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
